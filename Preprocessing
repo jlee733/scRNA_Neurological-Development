@@ -1,0 +1,10 @@
+
+df <- read .csv (’GW2 _ data .csv ’)
+samples <- sample (1: nrow (df) , nrow (df) * 0.66)
+df. train <- as. matrix (df[ samples , -1])
+df. test <- as. matrix (df[ - samples , -1])
+y <- read .csv(’GW2_ meta .csv ’)
+y . train <- as. factor (as. numeric ( y$ Layer == ’GZ ’) ) [ samples ]
+y . test <- as. factor (as. numeric ( y$ Layer == ’GZ ’) ) [ - samples ]
+
+
