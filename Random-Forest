@@ -1,0 +1,19 @@
+library ( randomForest )
+
+rf.df <- randomForest ( response ~ . , data = df , subset = train , importance
+  = TRUE )
+yhat .rf <- predict (rf.df , newdata = x . test )
+sum ( yhat .rf == y . test ) / length ( y . test ) # Accuracy
+
+importance (rf.df)
+varImpPlot (rf.df)
+
+conf _ matrix <- table ( yhat .rf , y . test ) # Confusion Matrix
+sensitivity ( conf _ matrix ) # sensitivity
+specificity ( conf _ matrix ) # specificity
+
+dfp <- data . frame ( y . test )
+dfp $ prob <- predict (rf.df , newdata = x . test , type = " prob ") [ ,2]
+g <- roc ( y . test ~ prob , data = dfp )
+plot ( g ) #ROC Curve
+
